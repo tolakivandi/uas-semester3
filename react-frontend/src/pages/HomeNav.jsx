@@ -16,13 +16,13 @@ export default function HomeNav() {
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
+          <Link color="foreground" href="./Mobil">
+            Mobil
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
           <Link href="#" aria-current="page">
-            Customers
+            penyewaan
           </Link>
         </NavbarItem>
         <NavbarItem>

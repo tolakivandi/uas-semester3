@@ -2,11 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const port = 3001;
-const cors = require('cors');
+const cors = require("cors");
 app.use(cors());
 
-const path = require('path')
-app.use('/static',express.static(path.join(__dirname,'public/images')))
+const path = require("path");
+app.use("/static", express.static(path.join(__dirname, "public/images")));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
