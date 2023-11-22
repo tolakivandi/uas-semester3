@@ -113,7 +113,7 @@ export default function Mobil() {
       <HomeNav />
       {/* modal */}
       <div className="pl-20">
-        <Button onClick={handleshow}>Open Modal</Button>
+        <Button onClick={handleshow}>tambah</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
           <ModalContent>
             {(onClose) => (
