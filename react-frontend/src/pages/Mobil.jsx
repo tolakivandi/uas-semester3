@@ -108,6 +108,78 @@ export default function Mobil() {
       setValidation(error.response.data);
     }
   };
+
+  const [editData, setEditData] = useState({
+    id_mobil: null,
+    nama_mobil: "",
+    model_mobil: "",
+    tahun_pembuatan: "",
+    warna_mobil: "",
+    harga_sewa : "",
+
+  });
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const handleShowEditModal = (data) => {
+    setEditData(data);
+    setShowEditModal(true);
+    setShow(false);
+  };
+
+  const handleCloseEditModal = () => {
+    setShowEditModal(false);
+    setEditData({
+      id_j: null,
+      nama_jurusan: "",
+    });
+  };
+
+  const handleEditDataChange = (field, value) => {
+    setEditData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+
+    if (editData.id_j === null || editData.id_j === undefined) {
+      console.error("Kesalahan: ID data tidak valid.");
+      return;
+    }
+
+    try {
+      await axios.patch(`http://localhost:3000/api/jurusan/update/${editData.id_j}`, {
+        nama_jurusan: editData.nama_jurusan,
+      });
+
+      navigate("/jrsn");
+      fetchData();
+      setShowEditModal(false);
+    } catch (error) {
+      console.error("Kesalahan:", error);
+      setValidation(error.response.data);
+    }
+  };
+
+  const handleDelete = (id_j) => {
+    console.log("Trying to delete data with ID:", id_j);
+
+    axios
+      .delete(`http://localhost:3000/api/jurusan/delete/${id_j}`)
+      .then((response) => {
+        console.log('Data berhasil dihapus');
+        const updatedJrs = jrs.filter((item) => item.id_j !== id_j);
+        setJrsn(updatedJrs);
+      })
+      .catch((error) => {
+        console.error('Gagal menghapus data:', error);
+        alert('Gagal menghapus data. Silakan coba lagi atau hubungi administrator.');
+      });
+  };
+
+
   return (
     <>
       <HomeNav />
@@ -190,6 +262,8 @@ export default function Mobil() {
           </ModalContent>
         </Modal>
       </div>
+        {/* edit */}
+
       {/* akhir */}
       <Table aria-label="Example static collection table">
         <TableHeader>

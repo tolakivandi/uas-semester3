@@ -14,10 +14,13 @@ app.use(bodyParser.json());
 const mobilRouter = require("./routes/mobil.js");
 const pemesananRouter = require("./routes/pemesanan.js");
 const reviewRouter = require("./routes/review.js");
+const auth = require('./routes/auth/auth');
+
 
 app.use("/api/mobil", mobilRouter);
 app.use("/api/pemesanan", pemesananRouter);
 app.use("/api/review", reviewRouter);
+app.use('/api/auth', auth);
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
